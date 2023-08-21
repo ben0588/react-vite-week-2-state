@@ -89,6 +89,11 @@ function App() {
         setTotal(handleSumTotal(newList));
     };
 
+    const handleDeleteCart = (id) => {
+        const newList = carts.filter((item) => item.id !== id);
+        setCarts(newList);
+    };
+
     const handleCreateOrder = (value) => {
         setOrders([...orders, ...value]);
         setCarts([]);
@@ -111,6 +116,7 @@ function App() {
                         updateCartQuantity={updateCartQuantity}
                         total={total}
                         handleCreateOrder={handleCreateOrder}
+                        onDelete={handleDeleteCart}
                     />
                 </div>
                 <div className='col-12'>

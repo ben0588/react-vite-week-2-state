@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import { BsXLg } from 'react-icons/bs';
 
-const Cart = ({ data, updateCartQuantity, total, handleCreateOrder }) => {
+const Cart = ({ data, updateCartQuantity, total, handleCreateOrder, onDelete }) => {
     const [text, setText] = useState('');
 
     return (
@@ -10,7 +11,7 @@ const Cart = ({ data, updateCartQuantity, total, handleCreateOrder }) => {
                 <div className='pt-3'>購物車空空如也，去逛逛～</div>
             ) : (
                 <>
-                    <table className='table'>
+                    <table className='table align-middle'>
                         <thead>
                             <tr>
                                 <th>品項</th>
@@ -18,6 +19,7 @@ const Cart = ({ data, updateCartQuantity, total, handleCreateOrder }) => {
                                 <th>單價</th>
                                 <th>數量</th>
                                 <th>小計</th>
+                                <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,6 +47,15 @@ const Cart = ({ data, updateCartQuantity, total, handleCreateOrder }) => {
                                         </select>
                                     </td>
                                     <td>${item.price * item.quantity}</td>
+                                    <td>
+                                        <button
+                                            type='button'
+                                            className='btn btn-none btn-sm'
+                                            onClick={() => onDelete(item.id)}
+                                        >
+                                            <BsXLg />
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
